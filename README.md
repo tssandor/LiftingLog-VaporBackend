@@ -20,4 +20,4 @@ There is a _very_ simple [web interface](https://liftinglog-backend.herokuapp.co
 
 ## Possible improvements
 
-Adding a database, obviously!
+Adding a database, obviously! And adding authentication... so please don't abuse the API :]
