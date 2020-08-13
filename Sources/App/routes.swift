@@ -5,11 +5,6 @@ func routes(_ app: Application) throws {
     return "Total: \(totalWeight)"
   }
   
-  app.get("resetWeight", "noSeriouslyResetTheCounter") { req -> String in
-    _ = resetTheCounter()
-    return "Counter Zero O_o"
-  }
-  
   app.get("getWeight") { req -> String in
     return String(totalWeight)
   }
