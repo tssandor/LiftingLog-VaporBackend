@@ -15,7 +15,7 @@ func backupWeightData() -> Bool {
   let weightToStr = String(totalWeight)
   guard let data = weightToStr.data(using: .utf8)
        else { return false }
-  FileController.writeFileSync(named: name, with: data)
+  FileController.writeFileSync(named: name, with: data, overwrite: true)
   return true
 }
 
@@ -30,9 +30,8 @@ func newTotalWeight(_ weightToAdd: String) -> String {
 }
 
 func resetTheCounter() -> Bool {
-  guard let data = "0.0".data(using: .utf8)
-    else { return false }
-  FileController.writeFileSync(named: name, with: data)
+  totalWeight = 0
+  _ = backupWeightData()
   return true
 }
 
