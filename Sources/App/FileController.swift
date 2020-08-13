@@ -36,9 +36,7 @@ public enum FileController {
   private static let fileManager = FileManager.default
   private static let workingDir = DirectoryConfiguration.detect().workingDirectory
   
-  // MARK: - Synchronous Methods
-  
-  public static func getTemplateNames() -> [String]? {
+  public static func getFileNames() -> [String]? {
     do {
       return try fileManager.contentsOfDirectory(atPath: workingDir)
     } catch {
@@ -55,39 +53,11 @@ public enum FileController {
     return fileManager.createFile(
       atPath: workingDir + filename, contents: data)
   }
-  
-  // MARK: - Asynchronous Methods
-  
-//  public static func readFileAsync(_ filename: String, on req: Request ) throws -> Future<Data> {
-//    try req.fileio().read(file: workingDir + filename)
-//  }
-//
-//  public static func writeFileAsync(named filename: String,
-//                                    with data: Data,
-//                                    on req: Request,
-//                                    queue: DispatchQueue,
-//                                    overwrite : Bool = true) throws -> Future<Bool> {
-//    guard overwrite || !fileExists(filename) else {
-//      return req.future(false)
-//    }
-//
-//    let promise = req.eventLoop.newPromise(of: Bool.self)
-//
-//    queue.async {
-//      let result = fileManager.createFile(
-//        atPath: workingDir + filename, contents: data)
-//      promise.succeed(result: result)
-//    }
-//
-//    return promise.futureResult
-//  }
 }
-
-// MARK: - Private Methods
 
 extension FileController {
   private static func fileExists(_ filename: String) -> Bool {
-    guard let directoryContents = getTemplateNames() else { return false }
+    guard let directoryContents = getFileNames() else { return false }
     return directoryContents.contains(filename)
   }
 }

@@ -29,8 +29,10 @@ func newTotalWeight(_ weightToAdd: String) -> String {
   return String(totalWeight)
 }
 
-func resetTheCounter() {
-  let data = "0.0".data(using: .utf8)
+func resetTheCounter() -> Bool {
+  guard let data = "0.0".data(using: .utf8)
+    else { return false }
   FileController.writeFileSync(named: name, with: data)
+  return true
 }
 

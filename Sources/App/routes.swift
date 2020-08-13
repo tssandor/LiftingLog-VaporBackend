@@ -6,7 +6,7 @@ func routes(_ app: Application) throws {
   }
   
   app.get("resetWeight", "noSeriouslyResetTheCounter") { req -> String in
-    resetTheCounter()
+    _ = resetTheCounter()
     return "Counter Zero O_o"
   }
   
