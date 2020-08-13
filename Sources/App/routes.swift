@@ -1,11 +1,20 @@
 import Vapor
 
 func routes(_ app: Application) throws {
-    app.get { req in
-        return "It works!"
-    }
+  app.get { req in
+    return "Total: \(totalWeight)"
+  }
+  
+  app.get("getWeight") { req -> String in
+    return String(totalWeight)
+  }
+  
+  app.post("addWeight") { req -> String in
+    let weightToAdd = try req.content.decode(Weight.self)
+    return "New total: \(newTotalWeight(weightToAdd.weight))"
+  }
+}
 
-    app.get("hello") { req -> String in
-        return "Hello, world!"
-    }
+struct Weight: Content {
+  let weight: String
 }
